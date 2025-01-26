@@ -4,6 +4,10 @@ import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button";
 import { HiOutlineDocumentDownload } from "react-icons/hi";
+import PaginationArea from "./Pagination/PaginationArea";
+import { salesColumns } from "./SalesColumn";
+import { salesData } from "@/app/_data/sales-data";
+import { SalesTable } from "./SalesTable";
 
 export default function TableArea(){ 
     const tabItems = [
@@ -56,23 +60,24 @@ export default function TableArea(){
                         <span>Download CVS</span>
                     </Button>
                    {/* Download Button */}
-
-                    
                 </div>
 
                 {tabItems.map((tab) => (
                     <TabsContent key={tab.value} value={tab.value} className="w-full mt-9">
                         {activeTab == tab.value && (
                             // Table Data
-                            <span>{tab.value}</span>
+                            <span>
+                                <SalesTable columns={salesColumns} data={salesData}/>
+                            </span>
                         )}
                     </TabsContent>
                 ))}
                 </Tabs>  
 
-                
             </div>
+
             {/* Pagination */}
+            <PaginationArea/>
 
         </Card>
     )
