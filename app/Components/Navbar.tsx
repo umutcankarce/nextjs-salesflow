@@ -2,7 +2,7 @@ import { FaShoppingBag } from "react-icons/fa";
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import { IoIosAdd } from "react-icons/io";
-import { ModeToggle } from "../ModeToggle";
+import { ModeToggle } from "./ModeToggle";
 
 export default function Navbar(){
     return (
