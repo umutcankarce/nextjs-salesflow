@@ -2,11 +2,19 @@ import { SaleType } from "./types";
 
 export const salesData: SaleType[] = [
     {
+        customerName: "INNOVACRAFT",
+        dealValue:"$20,200",
+        status:"In Progress",
+        salesPerson:"Alice Mate",
+        contactDate:"27/01/25",
+        priority:"Low"
+    },
+    {
         customerName: "John Doe",
         dealValue:"$12,500",
         status:"In Progress",
         salesPerson:"Alice Mate",
-        contactDate:"25-1-13",
+        contactDate:"25/01/13",
         priority:"High"
     },
     {
@@ -14,7 +22,7 @@ export const salesData: SaleType[] = [
         dealValue:"$12,500",
         status:"Pending",
         salesPerson:"Lime Docker",
-        contactDate:"25-1-09",
+        contactDate:"25/01/09",
         priority:"High"
     },
     {
@@ -22,7 +30,7 @@ export const salesData: SaleType[] = [
         dealValue:"$10,100",
         status:"Closed",
         salesPerson:"Lexa Pers",
-        contactDate:"25-1-07",
+        contactDate:"16/01/25",
         priority:"Low"
     },
     {
@@ -30,8 +38,7 @@ export const salesData: SaleType[] = [
         dealValue:"$1,500",
         status:"Negotiation",
         salesPerson:"Lexa Pers",
-        contactDate:"25-1-05",
+        contactDate:"05/01/25",
         priority:"Medium"
     },
-
 ];

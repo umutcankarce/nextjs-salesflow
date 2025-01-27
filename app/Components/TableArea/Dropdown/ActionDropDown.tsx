@@ -1,6 +1,6 @@
 
-import { MdContentCopy,MdOutlineDelete,MdMoreVert } from "react-icons/md";
-import { FaRegEdit } from "react-icons/fa";
+import { MdContentCopy,MdOutlineDelete,MdMoreVert,MdEdit} from "react-icons/md";
+
 import { Button } from "@/components/ui/button";
 import { Row } from "@tanstack/react-table";
 
@@ -11,21 +11,16 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-  } from "@/components/ui/dropdown-menu"
-import { SaleType } from "../_data/types";
+  } 
+from "@/components/ui/dropdown-menu"
+import { SaleType } from "@/app/_data/types";
+
 
 export default function ActionDropDown({row}:{row: Row<SaleType>}){
-    const menuItems = [
-        {
-            icon:<MdContentCopy/>,
-            label:"Copy",
-            className:""
-        },
-        {
-            icon: <MdOutlineDelete/>,
-            label:"Delete",
-            className:""
-        }
+    const menuItems = [ 
+        { icon: <MdContentCopy/>,label:"Copy",className:""},
+        { icon: <MdEdit/>,label:"Edit",className:""},
+        { icon: <MdOutlineDelete className="text-lg"/>,label:"Delete",className:"text-red-600"}
     ];
 
     return (

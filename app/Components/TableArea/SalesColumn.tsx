@@ -1,9 +1,9 @@
 import { SaleType } from "@/app/_data/types";
-import ActionDropDown from "@/app/Dropdown/ActionDropDown";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ColumnDef } from "@tanstack/react-table";
-import { format } from "date-fns";
+import { format } from 'date-fns'
+import ActionDropDown from "./Dropdown/ActionDropDown";
 export const salesColumns:ColumnDef<SaleType>[] = [
     {
         id:"select",
@@ -53,9 +53,8 @@ export const salesColumns:ColumnDef<SaleType>[] = [
         header:"Contact Date",
         cell:({row}) => {
             const contactDate = row.original.contactDate;
-            const formattedDate = contactDate ? "d-m-y" : "N/A";
-            return formattedDate;
-        }
+            return <span>{contactDate}</span>
+        },
     },
     {
         accessorKey:"salesPerson",
