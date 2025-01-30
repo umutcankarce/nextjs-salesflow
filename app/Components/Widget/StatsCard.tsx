@@ -49,7 +49,6 @@ function SingleStatCard({SingleCard}: {SingleCard:SingleCard}){
                 </div>
             </div>
             <div className="text-3xl font-bold">{SingleCard.value}</div>
-
         </Card>
     );
 }

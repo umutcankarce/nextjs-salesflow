@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button";
@@ -8,16 +8,60 @@ import PaginationArea from "./Pagination/PaginationArea";
 import { salesColumns } from "./SalesColumn";
 import { salesData } from "@/app/_data/sales-data";
 import { SalesTable } from "./SalesTable";
+import { ColumnFiltersState, getCoreRowModel, getFilteredRowModel, useReactTable } from "@tanstack/react-table";
 
-export default function TableArea(){ 
+export default function TableArea({searchQuery}:{searchQuery:string}){ 
     const tabItems = [
-        { value:"all", label:"All",count:30},
-        { value: "high", label: "High", count: 10 },
-        { value: "medium", label: "Medium", count: 10 },
-        { value: "low", label: "Low", count: 10 },
+        {   value: "all", 
+            label:"All",
+            count: 5
+        },
+        {  
+            value: "high",
+            label: "High Priority",
+            count: salesData.filter((d) => d.priority === "High").length,
+        },
+        { 
+            value: "medium",
+            label: "Medium Priority",
+            count: salesData.filter((d) => d.priority === "Medium").length
+
+        },
+        { 
+            value: "low",
+            label: "Low Priority",
+            count: salesData.filter((d) => d.priority === "Low").length
+
+        },
     ];
 
     const [activeTab,setActiveTab] = useState("all");
+    const [columnFilters,setColumnFilters] = useState<ColumnFiltersState>([]);
+  
+    const filteredData = useMemo(() => {
+        if(activeTab == "all") { return salesData; }
+
+        return salesData.filter(
+            (data) => data.priority.toLocaleLowerCase() === activeTab
+        );
+    },[activeTab]);
+
+    const table = useReactTable({
+        data:filteredData,
+        columns: salesColumns,
+        getCoreRowModel:getCoreRowModel(),
+
+        onColumnFiltersChange:setColumnFilters,
+        getFilteredRowModel: getFilteredRowModel(),
+        state:{
+            columnFilters,
+        },
+    });
+
+    useEffect(() => { 
+        table.getColumn("customerName")?.setFilterValue(searchQuery);
+    },[searchQuery,table])
+ 
 
     return (
         <Card className="m-6 shadow-none">
@@ -67,7 +111,7 @@ export default function TableArea(){
                         {activeTab == tab.value && (
                             // Table Data
                             <span>
-                                <SalesTable columns={salesColumns} data={salesData}/>
+                                <SalesTable columns={salesColumns} data={salesData} />
                             </span>
                         )}
                     </TabsContent>
