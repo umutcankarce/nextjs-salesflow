@@ -8,9 +8,9 @@ import PaginationArea from "./Pagination/PaginationArea";
 import { salesColumns } from "./SalesColumn";
 import { salesData } from "@/app/_data/sales-data";
 import { SalesTable } from "./SalesTable";
-import { ColumnFiltersState, getCoreRowModel, getFilteredRowModel, useReactTable } from "@tanstack/react-table";
+import {  useReactTable } from "@tanstack/react-table";
 
-export default function TableArea({searchQuery}:{searchQuery:string}){ 
+export default function TableArea(){ 
     const tabItems = [
         {   value: "all", 
             label:"All",
@@ -36,31 +36,17 @@ export default function TableArea({searchQuery}:{searchQuery:string}){
     ];
 
     const [activeTab,setActiveTab] = useState("all");
-    const [columnFilters,setColumnFilters] = useState<ColumnFiltersState>([]);
   
-    const filteredData = useMemo(() => {
-        if(activeTab == "all") { return salesData; }
 
-        return salesData.filter(
-            (data) => data.priority.toLocaleLowerCase() === activeTab
-        );
-    },[activeTab]);
 
     const table = useReactTable({
-        data:filteredData,
+        data:salesData,
         columns: salesColumns,
-        getCoreRowModel:getCoreRowModel(),
-
-        onColumnFiltersChange:setColumnFilters,
-        getFilteredRowModel: getFilteredRowModel(),
-        state:{
-            columnFilters,
-        },
     });
 
     useEffect(() => { 
-        table.getColumn("customerName")?.setFilterValue(searchQuery);
-    },[searchQuery,table])
+        table.getColumn("customerName");
+    },[table])
  
 
     return (

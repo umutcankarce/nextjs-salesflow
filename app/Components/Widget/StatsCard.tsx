@@ -1,5 +1,8 @@
 import { ChartLine } from "lucide-react";
 import { FaHandshake } from "react-icons/fa";
+import { GrDocumentCsv } from "react-icons/gr";
+import { BiDollar } from "react-icons/bi";
+import { IoBarChartOutline } from "react-icons/io5";
 import { GrMoney } from "react-icons/gr";
 import React , { ReactNode } from "react";
 import { Card } from "@/components/ui/card";
@@ -14,6 +17,21 @@ export default function StatsCard(){
             title:"Total Sales",
             value: "$125,000",
             icon: <GrMoney/>
+        },
+        {
+            title:"Sales Invoice",
+            value: "20",
+            icon: <GrDocumentCsv />
+        },
+        {
+            title:"Total Amount",
+            value: "$200,000",
+            icon: <BiDollar />
+        },
+        {
+            title:"Sales Charts",
+            value: "50%",
+            icon: <IoBarChartOutline />
         },
         {
             title:"Deals in Progress",
@@ -36,19 +54,19 @@ export default function StatsCard(){
         </div>
     );
 }
-function SingleStatCard({SingleCard}: {SingleCard:SingleCard}){
-    return (
-        <Card className="p-4 flex flex-col gap-2 shadow-none">
-            {/* Header */}
-            <div className="flex items-center justify-between">
-                <span className="text-sm font-semibold text-slate-600">
-                {SingleCard.title}
-                </span>
-                <div className="size-7 rounded-md flex items-center justify-center text-sm bg-primary/25 font-bold text-primary">
-                    {SingleCard.icon}
+    function SingleStatCard({SingleCard}: {SingleCard:SingleCard}){
+        return (
+            <Card className="p-4 flex flex-col gap-2 shadow-none">
+                {/* Header */}
+                <div className="flex items-center justify-between">
+                    <span className="text-sm font-semibold text-slate-600">
+                    {SingleCard.title}
+                    </span>
+                    <div className="size-7 rounded-md flex items-center justify-center text-sm bg-primary/25 font-bold text-primary">
+                        {SingleCard.icon}
+                    </div>
                 </div>
-            </div>
-            <div className="text-3xl font-bold">{SingleCard.value}</div>
-        </Card>
-    );
-}
+                <div className="text-3xl font-bold">{SingleCard.value}</div>
+            </Card>
+        );
+    }

@@ -7,13 +7,12 @@ import TableArea from "./Components/TableArea/TableArea";
 import { useState } from "react";
 
 export default function Home() {
-  const [searchQuery,setSearchQuery] = useState("");
   return (
     <div className="m-5 poppins">
       <Card>
-      <Navbar  setSearchQuery={setSearchQuery} searchQuery={searchQuery}/>
+      <Navbar />
       <StatsCard />
-      <TableArea searchQuery={searchQuery} />
+      <TableArea />
       </Card>
     </div>
   );
